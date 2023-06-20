@@ -1,0 +1,8 @@
+.input-group{
+    border: 1px solid #a8a8a8;
+  }
+  .input-group:focus,
+  .input-group:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid transparent;
+  }
