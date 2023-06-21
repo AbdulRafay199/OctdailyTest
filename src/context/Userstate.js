@@ -3,9 +3,15 @@ const usercontext = createContext();
 
 const Userstate = (props) => {
 
+    //user data will be stored in this state whenever below getuser function is called.
     const [userdata,setuserdata] = useState([]);
+
+    //just created host variable for our ease since we are using it on multiple places.
     const host = "http://localhost:5000"
 
+    //functions that actually call api using js fetch method
+
+    //fetch user data
     const getuser = async ()=>{
 
       try{
@@ -15,7 +21,6 @@ const Userstate = (props) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
-            
           }
         });
         const json = await response.json();
@@ -26,6 +31,7 @@ const Userstate = (props) => {
       }
     }
 
+    //Add user data
     const adduser = async (data)=>{
 
       try {
@@ -46,6 +52,7 @@ const Userstate = (props) => {
       }
     }
 
+    //Update user data
     const updateuser = async (userid,data)=>{
 
       try {
@@ -66,6 +73,7 @@ const Userstate = (props) => {
       }
     }
 
+    //Delete user data
     const dltuser = async (userid)=>{
 
       try {

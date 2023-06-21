@@ -7,8 +7,6 @@ import '../style/Editmodal.css'
 
 const Editmodal = ({editdata,seteditdata,userid}) => {
 
-
-    // const [data,setdata] = useState({name:"", email:"", rollno:""})
     const {updateuser} = useContext(usercontext);
     const dismiss = useRef(0);
     const spinnerref = useRef(0);

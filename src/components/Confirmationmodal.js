@@ -4,9 +4,13 @@ import { useRef } from 'react';
 import { useContext } from 'react';
 
 const Confirmationmodal = ({userid}) => {
+
     const {dltuser} = useContext(usercontext);
+
     const dismiss = useRef(0);
     const spinnerref = useRef(0);
+
+    // function for calling delete API. Same logic implemented as used in Form.js
     const confirmdlt = async ()=>{
         spinnerref.current.classList.remove("d-none")
         let check = await dltuser(userid);
@@ -32,12 +36,12 @@ const Confirmationmodal = ({userid}) => {
             Are you Sure you want to proceed?
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ref={dismiss}>Close</button>
-            <button className="btn btn-success d-flex justify-content-center align-items-center" onClick={confirmdlt}>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" ref={dismiss}>No</button>
+            <button className="btn btn-danger d-flex justify-content-center align-items-center" onClick={confirmdlt}>
                 <div className="spinner-border spinner-border-sm text-light d-none" ref={spinnerref} role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
-                <p className="fs-6 m-0 mx-2">Ok</p>
+                <p className="fs-6 m-0 mx-2">Yes</p>
             </button>
         </div>
         </div>
