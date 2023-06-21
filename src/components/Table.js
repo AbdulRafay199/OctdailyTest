@@ -2,12 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import '../style/Table.css'
 import Tableitem from './Tableitem'
 import { usercontext } from '../context/Userstate'
+import Confirmationmodal from './Confirmationmodal'
+import { BiChevronRight,BiChevronLeft } from "react-icons/bi";
+import Editmodal from './Editmodal'
+
 
 
 const Table = () => {
 
     const {getuser,userdata} = useContext(usercontext)
-
+    const [userid,setuserid] = useState("")
+    const [editdata,seteditdata] = useState({name:"", email:"", rollno:""})
     const [searchValue,setsearchvalue] = useState("")
     const [filter,setfilter] = useState("0")
 
@@ -25,7 +30,39 @@ const Table = () => {
         getuser();
     })
 
+    const openConfirmationModal = (userid)=>{
+        setuserid(userid)
+    }
+
+    const confirmedit = (data)=>{
+        seteditdata({name:data.name, email:data.email, rollno:data.rollno})
+        setuserid(data._id)
+    }
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedResponses = filtereduser.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filtereduser.length / itemsPerPage);
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
+    <>
+    <Confirmationmodal userid={userid}/>
+    <Editmodal userid={userid} editdata={editdata} seteditdata={seteditdata}/>
     <div className='container'>
         <div className="row my-4">
             <div className="col-8">
@@ -43,7 +80,7 @@ const Table = () => {
                 </div>
             </div>
         </div>
-        <div className='container' style={{height:"35vh", overflowY:'scroll'}}>
+        <div className='container'>
             <table class="table table-light">
                 <thead>
                     <tr>
@@ -57,20 +94,40 @@ const Table = () => {
                 </thead>
                 <tbody>
                     {
-                        filter==="1" &&(filtereduser.map((item,index)=>{
-                            return <Tableitem item={item} index={index} key={index} />
+                        filter==="1" &&(displayedResponses.map((item,index)=>{
+                            return <Tableitem item={item} index={index} key={index} openConfirmationModal={openConfirmationModal} confirmedit={confirmedit}/>
                         }))
                         
                     }
                     {
-                        filter==="0"&&(filtereduser.reverse().map((item,index)=>{
-                            return <Tableitem item={item} index={index} key={index} />
+                        filter==="0"&&(displayedResponses.reverse().map((item,index)=>{
+                            return <Tableitem item={item} index={index} key={index} openConfirmationModal={openConfirmationModal} confirmedit={confirmedit}/>
                         }))
                     }
+                    <tr>
+                        <td>
+                            <b>Total Users:</b> {filtereduser.length}
+                        </td>
+                        <td>
+                            <b>Items per page:</b> {itemsPerPage}
+                        </td>
+                        <td colSpan={5}>
+                            <div className="container d-flex justify-content-end align-items-center">
+                                <button className='btn btn-dark btn-sm mx-2' onClick={handlePreviousPage} disabled={currentPage === 1}>
+                                    <BiChevronLeft/>
+                                </button>
+                                <span>{currentPage}/{totalPages}</span>
+                                <button className='btn btn-dark btn-sm mx-2' onClick={handleNextPage} disabled={endIndex >= filtereduser.length}>
+                                    <BiChevronRight/>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    </>
   )
 }
 
