@@ -29,6 +29,32 @@ const Form = () => {
   return (
     <>
         <form onSubmit={submithandler} className='container mt-4 outerdiv mx-0'>
+            <div class="mb-3 d-flex justify-content-space-evenly align-items-center flex-row">
+                <div className="col-3 mx-2">
+                    <label for="inputPassword" class="form-label fw-bold">Name</label>  
+                    <input type="text" class="form-control" id="name" onChange={changehandler} value={data.name}/>
+                </div>
+                <div className="col-3 mx-2">
+                    <label for="staticEmail" class="form-label fw-bold">Email</label>
+                    <input type="email" class="form-control" id="email" onChange={changehandler} value={data.email}/>
+                </div>
+                <div className="col-3 mx-2">
+                    <label for="rollno" class="form-label fw-bold">Roll No</label>  
+                    <input type="text" class="form-control" id="rollno" onChange={changehandler} value={data.rollno}/>
+                </div>
+                <div className="col-3 mx-2">
+                    <label for="rollno" class="form-label fw-bold" style={{visibility:"hidden"}}>Roll No</label>
+                    <button className="btn btn-success d-flex justify-content-center align-items-center" type='submit'>
+                        <div className="spinner-border spinner-border-sm text-light d-none" ref={spinnerref} role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <p className="fs-6 m-0 mx-2">Submit</p>
+                    </button>   
+                </div>
+            </div>
+        </form>
+
+        {/* <form onSubmit={submithandler} className='container mt-4 outerdiv mx-0'>
             <div class="mb-3 d-flex justify-content-center flex-row">
                 <div className="col-3">
                     <label for="inputPassword" class="form-label fw-bold">Name</label>  
@@ -61,7 +87,7 @@ const Form = () => {
                     <p className="fs-6 m-0 mx-2">Submit</p>
                 </button>
             </div>
-        </form>
+        </form> */}
     </>
   )
 }
