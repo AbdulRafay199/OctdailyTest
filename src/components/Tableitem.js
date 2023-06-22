@@ -16,10 +16,10 @@ const Tableitem = ({item,index,openConfirmationModal,confirmedit}) => {
         <td>{item.rollno}</td>
 
         {/* edit button */}
-        <td><BiEditAlt size="1.5rem" color='darkyellow' onClick={()=>confirmedit(item)} data-bs-toggle="modal" data-bs-target="#editmodal"/></td>
+        <td><BiEditAlt style={{cursor:"pointer"}} size="1.5rem" color='#dbca48' onClick={()=>confirmedit(item)} data-bs-toggle="modal" data-bs-target="#editmodal"/></td>
 
         {/* delete button */}
-        <td><MdDelete size="1.5rem" color='darkred' onClick={()=>openConfirmationModal(item._id)} data-bs-toggle="modal" data-bs-target="#confirmmodal"/></td>
+        <td><MdDelete style={{cursor:"pointer"}} size="1.5rem" color='#d6584f' onClick={()=>openConfirmationModal(item._id)} data-bs-toggle="modal" data-bs-target="#confirmmodal"/></td>
     </tr>
     </>
   )

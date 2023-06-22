@@ -5,12 +5,13 @@ import { useContext } from 'react';
 
 const Confirmationmodal = ({userid}) => {
 
+    // Used context API here and using dltuser function defined in Userstate.js for API calling
     const {dltuser} = useContext(usercontext);
 
     const dismiss = useRef(0);
     const spinnerref = useRef(0);
 
-    // function for calling delete API. Same logic implemented as used in Form.js
+    // function for calling delete API. Same logic implemented as in Form.js
     const confirmdlt = async ()=>{
         spinnerref.current.classList.remove("d-none")
         let check = await dltuser(userid);

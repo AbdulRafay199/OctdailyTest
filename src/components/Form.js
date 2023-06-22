@@ -42,26 +42,26 @@ const Form = () => {
   return (
     <>
     {/* there is a form tag for data submission... onSubmit calls submithandler function to submit the data through API call */}
-        <form onSubmit={submithandler} className='container mt-4 outerdiv mx-0'>
+        <form onSubmit={submithandler} className='container mt-2 outerdiv mx-0'>
             {/* here we use bootstrap grid . use 3 column for 3 fields and fourth column for submit button */}
-            <div class="mb-3 d-flex justify-content-space-evenly align-items-center flex-row">
+            <div class="mb-3 row d-flex justify-content-space-evenly align-items-center flex-row">
 
-                <div className="col-3 mx-2">
+                <div className="col-sm-12 col-md-3 my-sm-2">
                     <label for="inputPassword" class="form-label fw-bold">Name</label>  
                     <input type="text" class="form-control" id="name" onChange={changehandler} value={data.name}/>
                 </div>
 
-                <div className="col-3 mx-2">
+                <div className="col-sm-12 col-md-3 my-sm-2">
                     <label for="staticEmail" class="form-label fw-bold">Email</label>
                     <input type="email" class="form-control" id="email" onChange={changehandler} value={data.email}/>
                 </div>
 
-                <div className="col-3 mx-2">
+                <div className="col-sm-12 col-md-3 my-sm-2">
                     <label for="rollno" class="form-label fw-bold">Roll No</label>  
                     <input type="text" class="form-control" id="rollno" onChange={changehandler} value={data.rollno}/>
                 </div>
 
-                <div className="col-3 mx-2">
+                <div className="col-sm-12 col-md-3 my-sm-2">
 
                     {/* this label has no work here. we use it just to give button proper styling  */}
                     <label for="rollno" class="form-label fw-bold" style={{visibility:"hidden"}}>ignore it</label>

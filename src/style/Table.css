@@ -6,3 +6,10 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: 1px solid transparent;
   }
+
+  @media (max-width:600px) {
+    .customtable{
+      width: 100%;
+      overflow-x: auto;
+    }
+  }

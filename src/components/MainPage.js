@@ -6,7 +6,7 @@ const MainPage = () => {
   return (
     <>
 
-    <div className='container d-flex justify-content-center align-items-center flex-column my-4'>
+    <div className='container d-flex justify-content-center align-items-center flex-column mt-3'>
       {/* this inner div is for rendering two logo and one heading in a row */}
         <div className="container d-flex justify-content-center align-items-center flex-row">
           <img src={require('../assets/octdaily.png')} alt="octdaily" width="100px"/>
